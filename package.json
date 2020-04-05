@@ -1,0 +1,20 @@
+{
+  "name": "spectral-custom-rules",
+  "version": "1.0.0",
+  "description": "",
+  "bin": {
+    "spectral": "/node_modules/@stoplight/spectral/dist/cli/index.js"
+  },
+  "scripts": {
+    "test": "jest ./test/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@stoplight/spectral": "^5.3.0"
+  },
+  "devDependencies": {
+    "jest": "^25.2.7"
+  }
+}

@@ -1,0 +1,18 @@
+formats:
+  - oas3
+rules:
+  rule-supported-type-string-formats:
+    description: format must be one of enums
+    message: |-
+      type: string, format: {{error}}
+    severity: error
+    formats:
+      - oas3
+    recommended: true
+    given: $.components.schemas.[format]
+    then:
+      function: enumeration
+      functionOptions:
+        values:
+          - date
+          - email

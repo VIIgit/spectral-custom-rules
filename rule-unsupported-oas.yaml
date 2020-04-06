@@ -1,0 +1,16 @@
+formats:
+  - oas3
+rules:
+  rule-unsupported-oas:
+    description: Unsupported OAS3 Format
+    message: Update your OAS3 file to a supported version like 3.0.0, 3.0.1, 3.0.2
+    recommended: true
+    formats:
+      - oas3
+    severity: info
+    type: style
+    given: $.openapi
+    then:
+      function: pattern
+      functionOptions:
+        match: 3.0.[0|1|2]

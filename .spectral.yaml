@@ -1,0 +1,73 @@
+formats:
+  - json-schema-2019-09
+extends:
+  - spectral:oas
+  - ./rule-deprecated-oas.yaml
+  - ./rule-unsupported-oas.yaml
+  - ./rule-supported-type-string-formats.yaml
+rules:
+  my-rule-name:
+    description: Tags must have a description.
+    recommended: true
+    severity: hint
+    formats:
+      - oas3
+      - oas2
+    given: $.tags[*]
+    then:
+      field: description
+      function: truthy
+
+  api-host: off
+  license-url: off
+  oas3-parameter-description: off
+  openapi-tags-alphabetical: off
+  api-servers: off
+  path-params: off
+  path-not-include-query: off
+  path-keys-no-trailing-slash: off
+  path-declarations-must-exist: off
+  operation-tags: off
+  operation-tag-defined: off
+  operation-parameters: off
+  operation-operationId-valid-in-url: off
+  operation-operationId-unique: off
+  operation-operationId: off
+  operation-description: off
+  operation-2xx-response: off
+  openapi-tags: off
+  oas3-valid-schema-example: off
+  oas3-valid-parameter-schema-example: off
+  oas3-valid-oas-parameter-example: off
+  oas3-valid-oas-header-example: off
+  oas3-valid-oas-content-example: off
+  oas3-valid-header-schema-example: off
+  oas3-valid-content-schema-example: off
+  oas3-unused-components-schema: off
+  oas3-server-trailing-slash: off
+  oas3-schema: off
+  oas3-operation-security-defined: off
+  oas3-api-servers: off
+  oas2-valid-parameter-example: off
+  oas2-valid-definition-example: off
+  oas2-unused-definition: off
+  oas2-schema: off
+  oas2-operation-security-defined: off
+  oas2-operation-formData-consume-check: off
+  oas2-oneOf: off
+  oas2-host-trailing-slash: off
+  oas2-host-not-example: off
+  oas2-api-schemes: off
+  oas2-api-host: off
+  oas2-anyOf: off
+  no-$ref-siblings: off
+  info-license: off
+  info-description: off
+  info-contact: off
+  example-value-or-externalValue: off
+  contact-properties: off
+  oas3-server-not-example.com: off
+  operation-default-response: off
+  tag-description: off
+  operation-singular-tag: off
+

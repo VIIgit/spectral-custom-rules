@@ -6,23 +6,9 @@ const {
 const spectral = new Spectral();
 const { join } = require('path');
 
-const fs = require('fs');
-const yaml = require('js-yaml');
+const loadFile = require('./test.utils');
 
-let apiSpec;
-
-beforeAll(() => {
-    spectral.registerFormat('oas2', isOpenApiv2);
-    spectral.registerFormat('oas3', isOpenApiv3);
-    
-    let fileContents = fs.readFileSync('./test/pet.yaml', 'utf8');
-    apiSpec = yaml.safeLoad(fileContents);
-
-});
-
-test('pet.yaml', () => {
-
-    let expected = [ { code: 'my-deprecated-oas2',
+const expected = [ { code: 'rule-deprecated-oas',
         message: 'Migrate your Swagger 2.0 file to a newer OAS3 version',
         path: [ 'swagger' ],
         severity: 1,
@@ -31,17 +17,20 @@ test('pet.yaml', () => {
         end: { line: 1, character: 18 } } } 
     ];
 
-    return spectral.loadRuleset(join(__dirname, '../.spectral.json'))
-        .then(() => spectral.run(apiSpec))
-        .then(results => {
-            
-            let exp = JSON.stringify(expected);
-            let res = JSON.stringify(results);
+const apiSpec = loadFile('./test/pet.yaml');  
 
-            console.log("results >>>>>>>>>>>>>>>>>>>");
-            console.log(results);
-            console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-            expect( exp).toBe(res);
-        });
+beforeAll(() => {
+    spectral.registerFormat('oas2', isOpenApiv2);
+    spectral.registerFormat('oas3', isOpenApiv3);
+});
 
+test('pet.yaml', () => {
+
+    return spectral.loadRuleset(join(__dirname, '../rule-deprecated-oas.yaml'))
+            .then(() => spectral.run(apiSpec))
+            .then(results => {
+                console.log(JSON.stringify(results,null,2));
+                expect(results).toEqual(expected);
+            }
+        );
 });

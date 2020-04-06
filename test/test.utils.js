@@ -1,6 +1,9 @@
+const fs = require('fs');
+const yaml = require('js-yaml');
 
-function add(a, b){
-    return a + b;
+function loadFile(file){
+    let fileContents = fs.readFileSync(file, 'utf8');
+    return  yaml.safeLoad(fileContents);
 }
 
-module.exports = add;
+module.exports = loadFile;

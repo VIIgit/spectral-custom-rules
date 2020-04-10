@@ -1,30 +1,31 @@
 openapi: 3.0.3
 info:
   title: A HAL-Form extension with JSON Validation Schema
-  version: '1.0.0-SNAPSHOT'
-  description: |
-    Examples described at [https://viigit.github.io/schema-forms](https://viigit.github.io/schema-forms/)
+  version: 1.0.0-SNAPSHOT
+  description: >
+    Examples described at
+    [https://viigit.github.io/schema-forms](https://viigit.github.io/schema-forms/)
 tags:
   - name: Collection Workflows
   - name: Resource Workflows
-    description: "example workflows 5-8"
+    description: example workflows 5-8
   - name: Alternative Option
     description: "Alternative for _GET /employees Accept application/schema+json_ "
 servers:
-  - url: 'http://example.com/api/v1'
+  - url: "http://example.com/api/v1"
 paths:
   /employees:
     parameters:
-      - $ref: '#/components/parameters/AcceptLanguage'
+      - $ref: "#/components/parameters/AcceptLanguage"
     get:
       summary: List of Employees
       operationId: get-employees
       tags:
-      - Collection Workflows
-      parameters: 
-      - $ref: '#/components/parameters/AcceptLanguage'
+        - Collection Workflows
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguage"
       responses:
-        '200':
+        "200":
           description: OK
           headers:
             ETag:
@@ -35,47 +36,48 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Employees'
+                $ref: "#/components/schemas/Employees"
             application/prs.hal-forms+json:
               schema:
-                $ref: '#/components/schemas/EmployeesTemplates'
+                $ref: "#/components/schemas/EmployeesTemplates"
             application/schema+json:
               schema:
-                $ref: '#/components/schemas/EmployeesJsonSchema'
-
+                $ref: "#/components/schemas/EmployeesJsonSchema"
     post:
-      summary: 'Register employee'
+      summary: Register employee
       tags:
         - Collection Workflows
       operationId: post-employees
       responses:
-        '201':
+        "201":
           description: Created
           content:
             application/hal+json:
-              schema:      
+              schema:
                 type: object
                 properties:
                   _links:
-                    $ref: "#/components/schemas/EmployeeLink"
+                    $ref: "../employees.yaml#/components/schemas/EmployeeLink"
             application/prs.hal-forms+json:
               schema:
-                $ref: '#/components/schemas/EmployeesTemplates'
-        '400':
-          description: |
+                $ref: "#/components/schemas/EmployeesTemplates"
+        "400":
+          description: >
             Bad Request
-            - application/problem+json [IETF rfc 7807](https://tools.ietf.org/rfc/rfc7807.txt)
+
+            - application/problem+json [IETF rfc
+            7807](https://tools.ietf.org/rfc/rfc7807.txt)
           content:
             application/problem+json:
               schema:
-                allOf: 
-                  - $ref: '#/components/schemas/EmployeeValidationError'
-                  - $ref: '#/components/schemas/EmployeeValidationErrorUpdatedForm'
+                allOf:
+                  - $ref: "#/components/schemas/EmployeeValidationError"
+                  - $ref: "#/components/schemas/EmployeeValidationErrorUpdatedForm"
               examples:
                 adapted Form:
                   value:
-                    type: https://example.com/validation-error
-                    title: Your request parameters didn't validate.
+                    type: "https://example.com/validation-error"
+                    title: "Your request parameters didn't validate."
                     invalidProperties:
                       - $id: "#/birthday"
                         reason: must be in the past
@@ -87,8 +89,8 @@ paths:
                         method: POST
                         contentType: application/json
                         jsonSchema:
-                          $id: http://example.com/api/v1/employees
-                          $schema: https://json-schema.org/draft/2019-09/schema
+                          $id: "http://example.com/api/v1/employees"
+                          $schema: "https://json-schema.org/draft/2019-09/schema"
                           type: object
                           properties:
                             id: {}
@@ -100,17 +102,15 @@ paths:
                                 - john.doe-01@example.com
                                 - john.doe-a@example.com
                             workload: {}
-
                 just problem+json:
                   value:
-                    type: https://example.com/validation-error
-                    title: Your request parameters didn't validate.
+                    type: "https://example.com/validation-error"
+                    title: "Your request parameters didn't validate."
                     invalidProperties:
                       - $id: "#/birthday"
                         reason: must be in the past
                       - $id: "#/email"
                         reason: exists already
-                    
       requestBody:
         content:
           application/prs.hal-forms+json:
@@ -119,24 +119,22 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/Employee"
-              
-        description: ''
-        
-  '/employees/{id}':
+        description: ""
+  "/employees/{id}":
     parameters:
       - schema:
           type: string
         name: id
         in: path
         required: true
-      - $ref: '#/components/parameters/AcceptLanguage'
+      - $ref: "#/components/parameters/AcceptLanguage"
     get:
       summary: Details of an Employee
       tags:
         - Resource Workflows
       operationId: get-employees-id
       responses:
-        '200':
+        "200":
           description: Created
     patch:
       summary: Update Employee
@@ -149,38 +147,36 @@ paths:
             schema:
               $ref: "#/components/schemas/Employee"
       responses:
-        '200':
+        "200":
           description: Updated
           content:
             application/json:
               schema:
                 type: object
                 properties: {}
-        '400':
+        "400":
           description: Bad Request
           content:
             application/json:
               schema:
                 type: object
                 properties: {}
-
     delete:
       summary: Remove Employee
       tags:
         - Resource Workflows
       operationId: delete-employees-id
       responses:
-        '204':
+        "204":
           description: Removed
-
-  '/employees/{id}/resign':
+  "/employees/{id}/resign":
     parameters:
       - schema:
           type: string
         name: id
         in: path
         required: true
-      - $ref: '#/components/parameters/AcceptLanguage'
+      - $ref: "#/components/parameters/AcceptLanguage"
     post:
       summary: Resign
       tags:
@@ -192,30 +188,32 @@ paths:
             schema:
               $ref: "#/components/schemas/Resign"
       responses:
-        '204':
+        "204":
           description: Ok Resigned
-        '400':
+        "400":
           description: Bad Request
           content:
             application/json:
               schema:
                 type: object
                 properties: {}
-
   /employees.json:
     parameters:
-      - $ref: '#/components/parameters/AcceptLanguage'
+      - $ref: "#/components/parameters/AcceptLanguage"
     get:
       summary: Schema of Employees
       operationId: get-employees-schema
       tags:
-      - Alternative Option
+        - Alternative Option
       responses:
-        '200':
-          description: |
+        "200":
+          description: >
             OK
-            
-            References [_**application/schema+json**_ and _**application/schema-instance+json**_](https://json-schema.org/draft/2019-09/json-schema-core.html#parameter)
+
+
+
+            References [_**application/schema+json**_ and
+            _**application/schema-instance+json**_](https://json-schema.org/draft/2019-09/json-schema-core.html#parameter)
           headers:
             ETag:
               schema:
@@ -225,25 +223,27 @@ paths:
           content:
             application/schema+json:
               schema:
-                $ref: '#/components/schemas/EmployeesJsonSchema'
-            application/schema-instance+json; schema="http://example.com/api/v1/employees":
-              schema:
-                $ref: '#/components/schemas/EmployeesJsonSchema'
-
+                $ref: "#/components/schemas/EmployeesJsonSchema"
+            ? 'application/schema-instance+json; schema="http://example.com/api/v1/employees"'
+            : schema:
+                $ref: "#/components/schemas/EmployeesJsonSchema"
   /salaries.json:
     parameters:
-      - $ref: '#/components/parameters/AcceptLanguage'
+      - $ref: "#/components/parameters/AcceptLanguage"
     get:
-      summary: Schema of Employees's salaries
+      summary: "Schema of Employees's salaries"
       operationId: get-salaries-schema
       tags:
-      - Alternative Option
+        - Alternative Option
       responses:
-        '200':
-          description: |
+        "200":
+          description: >
             OK
-            
-            References [_**application/schema+json**_ and _**application/schema-instance+json**_](https://json-schema.org/draft/2019-09/json-schema-core.html#parameter)
+
+
+
+            References [_**application/schema+json**_ and
+            _**application/schema-instance+json**_](https://json-schema.org/draft/2019-09/json-schema-core.html#parameter)
           headers:
             ETag:
               schema:
@@ -253,34 +253,30 @@ paths:
           content:
             application/schema+json:
               schema:
-                $ref: '#/components/schemas/SalariesJsonSchema'
-            application/schema-instance+json; schema="http://example.com/api/v1/salaries":
-              schema:
-                $ref: '#/components/schemas/SalariesJsonSchema'
-
+                $ref: "#/components/schemas/SalariesJsonSchema"
+            ? 'application/schema-instance+json; schema="http://example.com/api/v1/salaries"'
+            : schema:
+                $ref: "#/components/schemas/SalariesJsonSchema"
 components:
-
   schemas:
-
     Employees:
       allOf:
-      - type: object
-        properties:
-          _embedded:
-            type: object
-            properties:
-              employees:
-                type: array
-                items:
-                  $ref: "#/components/schemas/ExistingEmployee"
-      - $ref: '#/components/schemas/EmployeesLinks'
-
+        - type: object
+          properties:
+            _embedded:
+              type: object
+              properties:
+                employees:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/ExistingEmployee"
+        - $ref: "#/components/schemas/EmployeesLinks"
     EmployeeId:
       type: object
       properties:
         id:
           type: integer
-          example: 1        
+          example: 1
     Employee:
       type: object
       properties:
@@ -303,19 +299,18 @@ components:
         workload:
           type: string
           enum:
-          - PART-TIME
-          - PERMANENT
+            - PART-TIME
+            - PERMANENT
         active:
           type: boolean
           enum:
-          - true
-          - false
+            - true
+            - false
     ExistingEmployee:
       allOf:
-      - $ref: "#/components/schemas/EmployeeId"
-      - $ref: "#/components/schemas/Employee"
-      - $ref: "#/components/schemas/EmployeeLinks"
-
+        - $ref: "#/components/schemas/EmployeeId"
+        - $ref: "#/components/schemas/Employee"
+        - $ref: "#/components/schemas/EmployeeLinks"
     EmployeeTemplates:
       type: object
       properties:
@@ -331,7 +326,7 @@ components:
                 method:
                   type: string
                   example: POST
-                contentType: 
+                contentType:
                   type: string
                   example: application/json
                 jsonSchema:
@@ -343,7 +338,7 @@ components:
                     properties:
                       id:
                         type: integer
-                        example: 1        
+                        example: 1
                       firstName:
                         type: string
                         example: John
@@ -355,7 +350,7 @@ components:
                       birthday:
                         type: string
                         format: date
-                        example: 2000-12-31
+                        example: "2000-12-31"
                       email:
                         type: string
                         format: email
@@ -363,78 +358,76 @@ components:
                       workload:
                         type: boolean
                         oneOf:
-                        - const: PART-TIME
-                          title: Teilzeit
-                        - const: PERMANENT
-                          title: Festangestellt
+                          - const: PART-TIME
+                            title: Teilzeit
+                          - const: PERMANENT
+                            title: Festangestellt
             deleteEmployee:
               type: object
               properties:
                 method:
                   type: string
                   example: DELETE
-
     EmployeesTemplates:
       allOf:
-      - $ref: '#/components/schemas/Employees'
-      - type: object
-        properties:
-          _templates:
-            type: object
-            properties:
-              addEmployee:
-                type: object
-                properties:
-                  title:
-                    type: string
-                    example: Add Employee
-                  method:
-                    type: string
-                    example: POST
-                  contentType: 
-                    type: string
-                    example: application/json
-                  jsonSchema:
-                    type: object
-                    example:
-                      $id: "http://example.com/api/v1/employees"
-                      $schema: "https://json-schema.org/draft/2019-09/schema"
+        - $ref: "#/components/schemas/Employees"
+        - type: object
+          properties:
+            _templates:
+              type: object
+              properties:
+                addEmployee:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                      example: Add Employee
+                    method:
+                      type: string
+                      example: POST
+                    contentType:
+                      type: string
+                      example: application/json
+                    jsonSchema:
                       type: object
-                      properties:
-                        id:
-                          type: integer
-                          example: 1        
-                        firstName:
-                          type: string
-                          example: John
-                          minLength: 1
-                        lastName:
-                          type: string
-                          example: Doe
-                          minLength: 1
-                        birthday:
-                          type: string
-                          format: date
-                          example: 2000-12-31
-                        email:
-                          type: string
-                          format: email
-                          example: john.doe@example.com
-                        workload:
-                          type: string
-                          oneOf:
-                          - const: PART-TIME
-                            title: Teilzeit
-                          - const: PERMANENT
-                            title: Festangestellt
-                        active:
-                          type: string
-                          oneOf:
-                          - const: true
-                            title: Active
-                          - const: false
-                            title: Resigned
-
+                      example:
+                        $id: "http://example.com/api/v1/employees"
+                        $schema: "https://json-schema.org/draft/2019-09/schema"
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          firstName:
+                            type: string
+                            example: John
+                            minLength: 1
+                          lastName:
+                            type: string
+                            example: Doe
+                            minLength: 1
+                          birthday:
+                            type: string
+                            format: date
+                            example: "2000-12-31"
+                          email:
+                            type: string
+                            format: email
+                            example: john.doe@example.com
+                          workload:
+                            type: string
+                            oneOf:
+                              - const: PART-TIME
+                                title: Teilzeit
+                              - const: PERMANENT
+                                title: Festangestellt
+                          active:
+                            type: string
+                            oneOf:
+                              - const: true
+                                title: Active
+                              - const: false
+                                title: Resigned
     EmployeeLinks:
       type: object
       properties:
@@ -442,23 +435,7 @@ components:
           type: object
           readOnly: true
           allOf:
-          - $ref: "#/components/schemas/EmployeeLink"
-          - $ref: "#/components/schemas/LeavesCompany"
-
-    EmployeeLink:
-      type: object
-      required: 
-      - self
-      properties:
-        self:
-          type: object
-          required: 
-          - href
-          properties:
-            href:
-              type: string
-              example: 'http://example.com/employees/1'
-
+            - $ref: "../employees.yaml#/components/schemas/EmployeeLink"
     EmployeesLinks:
       type: object
       properties:
@@ -466,34 +443,31 @@ components:
           type: object
           readOnly: true
           allOf:
-          - $ref: "#/components/schemas/EmployeesLink"
-          
+            - $ref: "#/components/schemas/EmployeesLink"
     EmployeesLink:
       type: object
-      required: 
-      - self
+      required:
+        - self
       properties:
         self:
           type: object
-          required: 
-          - href
+          required:
+            - href
           properties:
             href:
               type: string
-              example: 'http://example.com/employees'
-              
+              example: "http://example.com/employees"
     LeavesCompany:
       type: object
       properties:
         leavesCompany:
           type: object
           required:
-          - href
+            - href
           properties:
             href:
               type: string
-              example: 'http://example.com/employees/1'
-
+              example: "http://example.com/employees/1"
     EmployeeValidationError:
       type: object
       properties:
@@ -508,17 +482,16 @@ components:
           items:
             type: object
             properties:
-              "$id":
+              $id:
                 type: string
-                example: '#/firstName'
+                example: "#/firstName"
               reason:
                 type: string
           example:
-            - "$id": "#/birthday"
-              reason: "must be in the past"
-            - "$id": "#/email"
-              reason: "exists already"
-              
+            - $id: "#/birthday"
+              reason: must be in the past
+            - $id: "#/email"
+              reason: exists already
     EmployeeValidationErrorUpdatedForm:
       type: object
       properties:
@@ -534,7 +507,7 @@ components:
                 method:
                   type: string
                   example: POST
-                contentType: 
+                contentType:
                   type: string
                   example: application/json
                 jsonSchema:
@@ -549,11 +522,10 @@ components:
                       lastName: {}
                       birthday: {}
                       email:
-                        enum: 
-                        - john.doe-01@example.com
-                        - john.doe-a@example.com
+                        enum:
+                          - john.doe-01@example.com
+                          - john.doe-a@example.com
                       workload: {}
-
     EmployeesSchema:
       allOf:
         - type: object
@@ -565,7 +537,6 @@ components:
               type: string
               example: "https://json-schema.org/draft/2019-09/schema"
         - $ref: "#/components/schemas/Employee"
-  
     EmployeesJsonSchema:
       type: object
       example:
@@ -581,7 +552,7 @@ components:
             properties:
               reason:
                 type: string
-                title: Reason for termination 
+                title: Reason for termination
                 minLength: 10
                 maxLength: 100
         type: object
@@ -606,18 +577,17 @@ components:
           workload:
             type: string
             oneOf:
-            - const: PART-TIME
-              title: Teilzeit
-            - const: PERMANENT
-              title: Festangestellt
+              - const: PART-TIME
+                title: Teilzeit
+              - const: PERMANENT
+                title: Festangestellt
           active:
             type: boolean
             oneOf:
-            - const: true
-              title: Active
-            - const: false
-              title: Resigned
-
+              - const: true
+                title: Active
+              - const: false
+                title: Resigned
     SalariesJsonSchema:
       type: object
       example:
@@ -627,7 +597,7 @@ components:
         properties:
           id:
             type: integer
-            example: 1        
+            example: 1
           baseSalary:
             type: object
             properties:
@@ -640,26 +610,21 @@ components:
           payday:
             type: string
             format: date
-            example: 2020-02-29
-
+            example: "2020-02-29"
     Resign:
       type: object
       properties:
         reason:
           type: string
-          title: Reason for termination 
+          title: Reason for termination
           example: Opportunity to work abroad
           minLength: 10
           maxLength: 100
-
-    NotUsed:
-      type: object
-      
   parameters:
     AcceptLanguage:
       name: Accept-Language
       in: query
       schema:
         type: string
-        example: en; fr;q=0.9, de;q=0.8
+        example: "en; fr;q=0.9, de;q=0.8"
       description: To localize content

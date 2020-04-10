@@ -1,0 +1,62 @@
+[
+  {
+    "code": "unused-definition-oas3",
+    "message": "Potentially unused definition has been detected.",
+    "path": [
+      "components",
+      "schemas",
+      "EmployeeTemplates"
+    ],
+    "severity": 1,
+    "range": {
+      "start": {
+        "line": 489,
+        "character": 26
+      },
+      "end": {
+        "line": 564,
+        "character": 39
+      }
+    }
+  },
+  {
+    "code": "unused-definition-oas3",
+    "message": "Potentially unused definition has been detected.",
+    "path": [
+      "components",
+      "schemas",
+      "EmployeesSchema"
+    ],
+    "severity": 1,
+    "range": {
+      "start": {
+        "line": 840,
+        "character": 24
+      },
+      "end": {
+        "line": 856,
+        "character": 51
+      }
+    }
+  },
+  {
+    "code": "unused-definition-oas3",
+    "message": "Potentially unused definition has been detected.",
+    "path": [
+      "components",
+      "schemas",
+      "NotUsed"
+    ],
+    "severity": 1,
+    "range": {
+      "start": {
+        "line": 980,
+        "character": 16
+      },
+      "end": {
+        "line": 981,
+        "character": 24
+      }
+    }
+  }
+]

@@ -1,12 +1,10 @@
 const {
     Spectral,
-    isOpenApiv2,
-    isOpenApiv3
+    isOpenApiv2
 } = require('@stoplight/spectral');
 const spectral = new Spectral();
-const { join } = require('path');
 
-const loadFile = require('./test.utils');
+const {lintAndcompare, loadFile} = require('../src/testRuleSet');
 
 const expected = [ { code: 'rule-deprecated-oas',
         message: 'Migrate your Swagger 2.0 file to a newer OAS3 version',
@@ -21,16 +19,12 @@ const apiSpec = loadFile('./test/pet.yaml');
 
 beforeAll(() => {
     spectral.registerFormat('oas2', isOpenApiv2);
-    spectral.registerFormat('oas3', isOpenApiv3);
 });
 
 test('pet.yaml', () => {
+    return lintAndcompare(spectral, apiSpec, 'rule-deprecated-oas', 'oas2');
+});
 
-    return spectral.loadRuleset(join(__dirname, '../ruleset/rule-deprecated-oas.yaml'))
-            .then(() => spectral.run(apiSpec))
-            .then(results => {
-                console.log(JSON.stringify(results,null,2));
-                expect(results).toEqual(expected);
-            }
-        );
+test('rule-unused-reuseable-object', () => {
+    return lintAndcompare(spectral, apiSpec, 'rule-unused-reuseable-object', 'oas2');
 });

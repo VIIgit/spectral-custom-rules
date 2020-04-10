@@ -1,0 +1,27 @@
+
+rules:
+  unused-definition-oas2:
+    description: Potentially unused definition has been detected.
+    recommended: true
+    formats:
+    - oas2
+    type: style
+    resolved: false
+    given: "$.definitions"
+    then:
+      function: unreferencedReusableObject
+      functionOptions:
+        reusableObjectsLocation: "#/definitions"
+
+  unused-definition-oas3:
+    description: Potentially unused definition has been detected.
+    recommended: true
+    formats:
+    - oas3
+    type: style
+    resolved: false
+    given: "$.components.schemas"
+    then:
+      function: unreferencedReusableObject
+      functionOptions:
+        reusableObjectsLocation: "#/components/schemas"

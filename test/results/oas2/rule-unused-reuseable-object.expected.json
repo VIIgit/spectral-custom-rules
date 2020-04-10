@@ -1,0 +1,21 @@
+[
+  {
+    "code": "unused-definition-oas2",
+    "message": "Potentially unused definition has been detected.",
+    "path": [
+      "definitions",
+      "NotUsed"
+    ],
+    "severity": 1,
+    "range": {
+      "start": {
+        "line": 1030,
+        "character": 14
+      },
+      "end": {
+        "line": 1031,
+        "character": 22
+      }
+    }
+  }
+]

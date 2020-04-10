@@ -1,0 +1,5 @@
+{
+    "settings": {
+        "spectral.rulesetFile": "./ruleset/.spectral.yaml"
+    }
+}

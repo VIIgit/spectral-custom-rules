@@ -695,6 +695,8 @@ definitions:
         type: "string"
       message:
         type: "string"
+  NotUsed:
+    type: object
 externalDocs:
   description: "Find out more about Swagger"
   url: "http://swagger.io"

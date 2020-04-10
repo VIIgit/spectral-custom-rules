@@ -10,7 +10,7 @@ function loadFile(file){
 
 function lintAndcompare(spectral, apiSpec, ruleFileName, usecaseName){
 
-    let resultFolderName = './test/results/' + (usecaseName ? usecaseName : 'unknown_usecaseName');
+    let resultFolderName = './test/' + (usecaseName ? usecaseName : 'unknown_usecaseName');
     
     console.log('1: ' + resultFolderName);
     if (!fs.existsSync(resultFolderName)){

@@ -18,15 +18,15 @@ beforeAll(() => {
 describe('employees', () => {
   
   test(' rule-unsupported-oas', () => {
-    return lintAndcompare(spectral, apiSpec, 'rule-unsupported-oas', 'employees');
+    return lintAndcompare(spectral, apiSpec, 'rule-unsupported-oas', 'employees.test');
   });
 
   test('rule-supported-type-string-formats', () => {
-    return lintAndcompare(spectral, apiSpec, 'rule-supported-type-string-formats', 'employees');
+    return lintAndcompare(spectral, apiSpec, 'rule-supported-type-string-formats', 'employees.test');
   });
 
   test('rule-unused-reuseable-object', () => {
-    return lintAndcompare(spectral, apiSpec, 'rule-unused-reuseable-object', 'employees');
+    return lintAndcompare(spectral, apiSpec, 'rule-unused-reuseable-object', 'employees.test');
   });
 
 });

@@ -12,9 +12,8 @@ function lintAndcompare(spectral, apiSpec, ruleFileName, usecaseName){
 
     let resultFolderName = './test/' + (usecaseName ? usecaseName : 'unknown_usecaseName');
     
-    console.log('1: ' + resultFolderName);
     if (!fs.existsSync(resultFolderName)){
-        console.log('2: ' + resultFolderName);
+        console.log('Initialize ' + resultFolderName);
         fs.mkdirSync(resultFolderName);
     }
     

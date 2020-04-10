@@ -1,12 +1,9 @@
-formats:
-  - oas2
+
 rules:
   rule-deprecated-oas:
     description: Deprecated Swagger 2.0 Format
     message: Migrate your Swagger 2.0 file to a newer OAS3 version
     recommended: true
-    formats:
-      - oas2
     severity: warn
     type: style
     given: $.swagger

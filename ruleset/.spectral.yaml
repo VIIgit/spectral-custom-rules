@@ -1,5 +1,5 @@
 formats:
-  - json-schema-2019-09
+  - oas2
 extends:
   - spectral:oas
   - ./rule-deprecated-oas.yaml

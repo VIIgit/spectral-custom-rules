@@ -6,7 +6,8 @@
     "spectral": "/node_modules/@stoplight/spectral/dist/cli/index.js"
   },
   "scripts": {
-    "test": "jest ./test/"
+    "test": "jest ./test/",
+    "copyToDist": "cp -r ./ruleset/*.yaml dist && cp -r ./ruleset/.spectral.yaml dist && cp -r README.md dist"
   },
   "keywords": [],
   "author": "",

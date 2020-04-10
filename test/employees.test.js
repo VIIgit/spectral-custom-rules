@@ -22,7 +22,7 @@ describe('employees', () => {
   
   test(' rule-unsupported-oas', () => {
     const expected = loadFile('./test/employees.test.expected.json');  
-    return spectral.loadRuleset(join(__dirname, '../rule-unsupported-oas.yaml'))
+    return spectral.loadRuleset(join(__dirname, '../ruleset/rule-unsupported-oas.yaml'))
             .then(() => spectral.run(apiSpec))
             .then(results => {
               console.log(JSON.stringify(results,null,2));
@@ -34,7 +34,7 @@ describe('employees', () => {
   test('rule-supported-type-string-formats', () => {
 
     const expected = loadFile('./test/employees.test.expected.2.json');
-    return spectral.loadRuleset(join(__dirname, '../rule-supported-type-string-formats.yaml'))
+    return spectral.loadRuleset(join(__dirname, '../ruleset/rule-supported-type-string-formats.yaml'))
             .then(() => spectral.run(apiSpec))
             .then(results => {
               console.log(JSON.stringify(results,null,2));

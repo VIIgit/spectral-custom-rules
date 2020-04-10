@@ -26,7 +26,7 @@ beforeAll(() => {
 
 test('pet.yaml', () => {
 
-    return spectral.loadRuleset(join(__dirname, '../rule-deprecated-oas.yaml'))
+    return spectral.loadRuleset(join(__dirname, '../ruleset/rule-deprecated-oas.yaml'))
             .then(() => spectral.run(apiSpec))
             .then(results => {
                 console.log(JSON.stringify(results,null,2));

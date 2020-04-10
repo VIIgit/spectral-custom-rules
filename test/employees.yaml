@@ -654,7 +654,7 @@ components:
 
     NotUsed:
       type: object
-      
+
   parameters:
     AcceptLanguage:
       name: Accept-Language

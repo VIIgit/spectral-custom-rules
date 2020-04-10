@@ -3,6 +3,7 @@ rules:
   unused-definition-oas2:
     description: Potentially unused definition has been detected.
     recommended: true
+    severity: warn
     formats:
     - oas2
     type: style
@@ -16,6 +17,7 @@ rules:
   unused-definition-oas3:
     description: Potentially unused definition has been detected.
     recommended: true
+    severity: warn
     formats:
     - oas3
     type: style

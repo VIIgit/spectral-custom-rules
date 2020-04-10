@@ -39,6 +39,7 @@ function lintAndcompare(spectral, apiSpec, ruleFileName, usecaseName){
                     });
                 } else {
                     let expected = loadFile(expectedResultName);  
+                    results = JSON.parse(resultJson);
                     expect(results).toEqual(expected);
                 }
             })

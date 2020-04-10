@@ -22,9 +22,9 @@ beforeAll(() => {
 });
 
 test('pet.yaml', () => {
-    return lintAndcompare(spectral, apiSpec, 'rule-deprecated-oas', 'oas2');
+    return lintAndcompare(spectral, apiSpec, 'rule-deprecated-oas', 'pet');
 });
 
 test('rule-unused-reuseable-object', () => {
-    return lintAndcompare(spectral, apiSpec, 'rule-unused-reuseable-object', 'oas2');
+    return lintAndcompare(spectral, apiSpec, 'rule-unused-reuseable-object', 'pet');
 });

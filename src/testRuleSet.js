@@ -34,16 +34,13 @@ function lintAndcompare(spectral, apiSpec, ruleFileName, usecaseName){
             fs.access(expectedResultName, fs.F_OK, (err) => {
                 if (err) {
                     fs.writeFile( expectedResultName, resultJson, function (err) {
-                        
                         console.log(expectedResultName + ' initially created!');
                     });
-                } else {
-                    let expected = loadFile(expectedResultName);  
-                    results = JSON.parse(resultJson);
-                    expect(results).toEqual(expected);
                 }
             })
-            
+            let expected = loadFile(expectedResultName);  
+            results = JSON.parse(resultJson);
+            return expect(results).toEqual(expected);
         });
 }
 

@@ -695,6 +695,13 @@ definitions:
         type: "string"
       message:
         type: "string"
+      emptyObject:
+        type: object
+      invalidAttributeNamingConvetion:
+        type: string
+      additional:
+        additionalProperties: true
+          
   NotUsed:
     type: object
 externalDocs:

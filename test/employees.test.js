@@ -29,5 +29,11 @@ describe('employees', () => {
     return lintAndcompare(spectral, apiSpec, 'rule-unused-reuseable-object', 'employees.test');
   });
 
+  test('rule-value-equal', () => {
+    
+    return lintAndcompare(spectral, apiSpec, 'rule-value-equal', 'employees.test');
+  });
+  
+
 });
 

@@ -1,0 +1,21 @@
+[
+    {
+      "code": "rule-value-equal",
+      "message": "severity: warn; '{error}': Value 1.0.0-SNAPSHOT not equal {1.0.0}.; '{description}': Value is equal; '{path}': #/info/version; '{property}': version; '{value}': 1.0.0-SNAPSHOT",
+      "path": [
+        "info",
+        "version"
+      ],
+      "severity": 1,
+      "range": {
+        "start": {
+          "line": 4,
+          "character": 15
+        },
+        "end": {
+          "line": 4,
+          "character": 31
+        }
+      }
+    }
+  ]

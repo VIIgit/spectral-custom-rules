@@ -6,7 +6,10 @@ extends:
   - ./rule-unsupported-oas.yaml
   - ./rule-supported-type-string-formats.yaml
   - ./rule-unused-reuseable-object.yaml
+  - ./rule-value-equal.yaml
+
 rules:
+
   my-rule-name:
     description: Tags must have a description.
     recommended: true

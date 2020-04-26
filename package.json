@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "bin": {
-    "spectral": "/node_modules/@stoplight/spectral/dist/cli/index.js"
+    "spectralx": "/node_modules/@stoplight/spectral/dist/cli/index.js"
   },
   "scripts": {
     "test": "jest ./test/",
-    "copyToDist": "cp -r ./ruleset/*.yaml dist && cp -r ./ruleset/.spectral.yaml dist && cp -r README.md dist"
+    "copyToDist": "cp -r ./ruleset/*.yaml dist && cp -r ./ruleset/.spectral.yaml dist && cp -r ./ruleset/**/*.js dist && cp -r README.md dist"
   },
   "keywords": [],
   "author": "",

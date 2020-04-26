@@ -1,0 +1,25 @@
+
+functionsDir: "./functions"
+functions:
+  - value-equal
+    # Options  
+    # - properties:
+    #    value:
+    #      type: string
+    #      description: Value to check equality for
+
+rules:
+  rule-value-equal:
+    description: Value is equal
+    recommended: true
+    severity: warn
+    formats:
+      - oas3
+      - oas2
+    message: "severity: warn; '{error}': {{error}}; '{description}': {{description}}; '{path}': {{path}}; '{property}': {{property}}; '{value}': {{value}} "
+
+    given: "$.info.version"
+    then:
+      function: "value-equal"
+      functionOptions:
+        value: "1.0.0"

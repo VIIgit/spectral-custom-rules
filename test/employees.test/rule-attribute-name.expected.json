@@ -1,0 +1,28 @@
+[
+    {
+      "code": "rule-attribute-pattern",
+      "message": "Don't use ('_cd','_id'): reason_cd",
+      "path": [
+        "paths",
+        "/employees/{id}/resign",
+        "post",
+        "requestBody",
+        "content",
+        "application/json",
+        "schema",
+        "properties",
+        "reason_cd"
+      ],
+      "severity": 1,
+      "range": {
+        "start": {
+          "line": 298,
+          "character": 23
+        },
+        "end": {
+          "line": 299,
+          "character": 53
+        }
+      }
+    }
+  ]

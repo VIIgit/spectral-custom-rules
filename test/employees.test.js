@@ -30,10 +30,12 @@ describe('employees', () => {
   });
 
   test('rule-value-equal', () => {
-    
     return lintAndcompare(spectral, apiSpec, 'rule-value-equal', 'employees.test');
   });
   
-
+  test('rule-attribute-name', () => {
+    return lintAndcompare(spectral, apiSpec, 'rule-attribute-name', 'employees.test');
+  });
+  
 });
 

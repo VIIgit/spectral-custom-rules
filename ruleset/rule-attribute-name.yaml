@@ -1,0 +1,24 @@
+
+functionsDir: "./functions"
+functions:
+  - attribute-match
+    # Options  
+    # - properties:
+    #    value:
+    #      type: string
+    #      description: Value to check equality for
+
+  - match-given
+
+rules:
+
+  rule-attribute-pattern:
+    description: Old practice
+    recommended: true
+    severity: warn
+    formats:
+      - oas3
+    message: "Don't use ('_cd','_id'): {{property}} "
+    given: '$.paths..properties[?(@property.endsWith("_cd") || @property.endsWith("_t") )]'
+    then:
+      function: match-given

@@ -651,6 +651,9 @@ components:
           example: Opportunity to work abroad
           minLength: 10
           maxLength: 100
+        reason_cd:
+          type: string
+          description: _cd should not be used
 
     NotUsed:
       type: object
